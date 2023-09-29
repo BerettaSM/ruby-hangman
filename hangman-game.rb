@@ -1,8 +1,12 @@
 class HangmanGame
     attr_reader :words
+    attr_reader :choosen_word
 
     def initialize
         read_words
+    end
+
+    def start
         
     end
 
@@ -15,5 +19,9 @@ class HangmanGame
 
     def filter_words text
         text.split.filter { |word| word.length >= 5 && word.length <= 12}
+    end
+
+    def pick_word
+        @choosen_word = @words.sample(1)[0].downcase
     end
 end
