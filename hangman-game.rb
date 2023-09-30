@@ -1,3 +1,6 @@
+require "./ascii-art.rb"
+
+
 class HangmanGame
     attr_reader :words
     attr_reader :choosen_word
@@ -7,7 +10,7 @@ class HangmanGame
     end
 
     def start
-        
+        print_menu
     end
 
     private
@@ -23,5 +26,12 @@ class HangmanGame
 
     def pick_word
         @choosen_word = @words.sample(1)[0].downcase
+    end
+
+    def print_menu
+        system "clear"
+        puts(AsciiArt::HANGMAN_LOGO)
+        puts "1. Start new game"
+        puts "2. Load game"
     end
 end
