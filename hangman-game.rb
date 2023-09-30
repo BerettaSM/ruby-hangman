@@ -5,12 +5,19 @@ class HangmanGame
     attr_reader :words
     attr_reader :choosen_word
 
+    MENU_OPTIONS = {
+        "1" => "Start new game",
+        "2" => "Load game",
+        "3" => "Exit"
+    }
+
     def initialize
         read_words
     end
 
     def start
         print_menu
+        user_input = read_input MENU_OPTIONS.keys, "Invalid menu option."
     end
 
     private
@@ -31,7 +38,14 @@ class HangmanGame
     def print_menu
         system "clear"
         puts(AsciiArt::HANGMAN_LOGO)
-        puts "1. Start new game"
-        puts "2. Load game"
+        MENU_OPTIONS.each_pair { |number, text| puts "#{number}. #{text}" }
+    end
+
+    def read_input valid_choices, err_message
+        loop do
+            choice = gets.chomp
+            return choice unless !valid_choices.include? choice
+            puts err_message
+        end
     end
 end
